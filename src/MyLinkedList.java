@@ -3,7 +3,8 @@ public class MyLinkedList<T> implements MyList<T> {
     Node<T> last;
     int size;
 
-    void add(T obj) {
+    @Override
+    public void add(T obj) {
         Node<T> node = new Node<>(obj);
         if (size == 0) {
             first = node;
@@ -26,7 +27,8 @@ public class MyLinkedList<T> implements MyList<T> {
         }
     }
 
-    T get(int index) {
+    @Override
+    public T get(int index) {
         checkIndex(index);
         if (index * 2 >= size) {
             Node<T> current = last;
@@ -45,25 +47,26 @@ public class MyLinkedList<T> implements MyList<T> {
         }
     }
 
-    void remove(int index){
+    @Override
+    public void remove(int index) {
         checkIndex(index);
-        if(index == 0){
+        if (index == 0) {
             first = first.next;
             size--;
         }
-        if(index == size-1){
+        if (index == size - 1) {
             last = last.previous;
             size--;
         }
-        if(index*2>=size){
+        if (index * 2 >= size) {
             Node<T> current = last;
-            for (int i = size-1; i > index; i--) {
+            for (int i = size - 1; i > index; i--) {
                 current = current.previous;
             }
             current.next.previous = current.previous;
             current.previous.next = current.next;
             size--;
-        }else{
+        } else {
             Node<T> current = first;
             for (int i = 0; i < index; i++) {
                 current = current.next;
@@ -77,12 +80,12 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public String toString() {
-       StringBuilder str = new StringBuilder("[");
-       Node<T> current = first;
+        StringBuilder str = new StringBuilder("[");
+        Node<T> current = first;
         for (int i = 0; i < size; i++) {
             str.append(current.value);
             current = current.next;
-            if(i<size-1){
+            if (i < size - 1) {
                 str.append(",");
             }
         }

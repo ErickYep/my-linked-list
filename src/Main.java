@@ -9,6 +9,7 @@ public class Main {
         System.out.println(list);
         list.remove(2);
         System.out.println(list);
+        list.get(2);
 
     }
 }
